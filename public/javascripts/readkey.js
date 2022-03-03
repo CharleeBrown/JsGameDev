@@ -22,6 +22,7 @@ newDiv.appendChild(canvas);
 
 let stageWidth = canvas.width/2;
 // middle of canvas.
+
 let stageHeight = canvas.height -30;
 // stage height.
 
@@ -32,21 +33,33 @@ let paddleWidth = 75;
 // width of the paddle.
 
 let paddleX = (canvas.width-paddleWidth)/2;
-// starting position of paddle.
+// X position of paddle.
+// The Y position does not change, because it only moves left to right.
 
 drawPaddle();
+// Calls drawPaddle function.
 
-var lives = 3;
-var score = 0;
-var dx = 2;
+let lives = 3;
+// Set the number of lives.
 
-var dy = -2;
-var ballRadius = 10;
+let score = 0;
+// Set the base score.
 
+let dx = 2;
+// X-coordinate of the paddle for movement.
 
+let dy = -2;
+// Y-coordinate of the paddle for movement.
+
+let ballRadius = 10;
+// The radius of the ball.
 
 var rightPressed = false;
+// variable used in checking the button press state.
+
 var leftPressed = false;
+// variable used in checking the button press state.
+
 var brickRowCount = 3;
 var brickColumnCount = 5;
 var brickWidth = 75;
@@ -85,42 +98,39 @@ function drawPaddle()
 
 
 	
-// function drawLives()
-// {
-// 	ctx.font = "16px Arial";
-// 	ctx.fillStyle = "#0095DD";
-// 	ctx.fillText("Lives: "+lives, canvas.width-65, 20);
-// }
+function drawLives()
+	{
+		ctx.font = "16px Arial";
+		ctx.fillStyle = "#0095DD";
+		ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+	}
 
-
-
-// function drawBricks() 
-
-// {
-// 	for(var c=0; c<brickColumnCount; c++)
-// 		{
-// 			for(var r=0; r<brickRowCount; r++) 
-// 				{
-// 					if(bricks[c][r].status ==1)
-// 						{
-// 							var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-// 							var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
-// 							bricks[c][r].x = brickX;
-// 							bricks[c][r].y = brickY;
-// 							ctx.beginPath();
-// 							ctx.rect(brickX,brickY,brickWidth, brickHeight);
-// 							ctx.fillStyle = "#0095DD";
-// 							ctx.fill();
-// 							ctx.closePath();
-// 					}
-// 				}
-// 			}
-// }
+function drawBricks() 
+	{
+		for(var c=0; c<brickColumnCount; c++)
+			{
+				for(var r=0; r<brickRowCount; r++) 
+					{
+						if(bricks[c][r].status ==1)
+							{
+								var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+								var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+								bricks[c][r].x = brickX;
+								bricks[c][r].y = brickY;
+								ctx.beginPath();
+								ctx.rect(brickX,brickY,brickWidth, brickHeight);
+								ctx.fillStyle = "#0095DD";
+								ctx.fill();
+								ctx.closePath();
+							}
+					}
+			}
+	}
 
 
 function drawScore()
 {
-	ctx.font = "16px Arial";
+	ctx.font = "16px Helvetica";
 	ctx.fillStyle="#0095DD";
 	ctx.fillText("Score: " +score, 8, 20);
 }
@@ -129,12 +139,12 @@ function draw()
 {
 	ctx.clearRect(0,0, canvas.width, canvas.height);
 	drawBall.fillStyle="green";
-	// drawBricks();
-	// drawBall();
+	drawBricks();
+	drawBall();
 	drawPaddle();
-	// drawScore();
-	// drawLives();
-	// collisionDetect();
+	drawScore();
+	drawLives();
+	collisionDetect();
 	if(rightPressed && paddleX < canvas.width-paddleWidth)
 		{
 			paddleX+=7;
@@ -239,8 +249,6 @@ function collisionDetect()
 									}
 							}
 					}
-
 			}
-
 	}		
 draw();
