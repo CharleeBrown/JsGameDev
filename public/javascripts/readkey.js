@@ -46,10 +46,10 @@ let score = 0;
 // Set the base score.
 
 let dx = 2;
-// X-coordinate of the paddle for movement.
+// X-coordinate of the ball for movement.
 
 let dy = -2;
-// Y-coordinate of the paddle for movement.
+// Y-coordinate of the ball for movement.
 
 let ballRadius = 10;
 // The radius of the ball.
@@ -61,16 +61,35 @@ var leftPressed = false;
 // variable used in checking the button press state.
 
 var brickRowCount = 3;
+// number of rows for the bricks.
+
 var brickColumnCount = 5;
+// number of columns for the bricks.
+
 var brickWidth = 75;
+// width of the bricks.
+
 var brickHeight = 20;
+// height of the bricks.
+
 var brickPadding = 10;
+// padding for the bricks.
+
 var brickOffsetTop = 30;
+// Positioning offset for the bricks.
+
 var brickOffsetLeft = 30;
+// Positioning offset left for the bricks
+
 var bricks = [];
+// Array to hold the amount and position of the bricks.
+
 for (var c=0; c<brickColumnCount; c++)
+// while c is < 3, c++; 
+// 
 	{
 	bricks[c] = [];
+
 	for(var r=0; r<brickRowCount;r++)
 		{
 			bricks[c][r] = {x:0, y:0, status:1 };
